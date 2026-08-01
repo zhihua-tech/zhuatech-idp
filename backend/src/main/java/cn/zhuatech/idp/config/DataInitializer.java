@@ -1,0 +1,11 @@
+/* Copyright 2026 上海如静知华信息科技有限公司 */
+package cn.zhuatech.idp.config;
+import cn.zhuatech.idp.model.*; import cn.zhuatech.idp.repository.*; import org.springframework.boot.CommandLineRunner; import org.springframework.context.annotation.*; import org.springframework.security.crypto.password.PasswordEncoder; import java.time.LocalDate; import java.util.List;
+@Configuration public class DataInitializer {
+ @Bean CommandLineRunner seed(OperatingUnitRepository units,WorkRecordRepository records,ResourceRegisterRepository resources,ReviewRecordRepository reviews,UserRepository users,PasswordEncoder encoder){return args->{if(units.count()>0)return;
+  OperatingUnit ap=units.save(new OperatingUnit("IDP-AP","应付发票队列","财务共享中心",9800)),contract=units.save(new OperatingUnit("IDP-CON","合同审核队列","法务中心",3000)),po=units.save(new OperatingUnit("IDP-PO","采购单据队列","采购中心",4000));
+  WorkRecord a=records.save(new WorkRecord("BATCH-AP-260801-18","DOC-INVOICE-VAT","供应商增值税发票批次",ap,2860,2486,42,LocalDate.now(),WorkRecord.Status.RUNNING,"MODEL-V4")); WorkRecord b=records.save(new WorkRecord("BATCH-CON-260801-06","DOC-CONTRACT-SALES","销售合同关键条款提取",contract,628,628,8,LocalDate.now(),WorkRecord.Status.COMPLETED,"MODEL-V3")); WorkRecord c=records.save(new WorkRecord("BATCH-PO-260801-09","DOC-PO-GR","采购订单与到货单匹配",po,916,584,67,LocalDate.now(),WorkRecord.Status.RELEASED,"MODEL-V5"));
+  resources.saveAll(List.of(new ResourceRegister("MODEL-INVOICE-CN","中国增值税发票模型",ap,ResourceRegister.Status.RUNNING,99),new ResourceRegister("MODEL-CONTRACT-ZH","中文合同条款模型",contract,ResourceRegister.Status.RUNNING,96),new ResourceRegister("MODEL-PO-MATCH","采购单据匹配模型",po,ResourceRegister.Status.ALARM,73)));
+  reviews.saveAll(List.of(new ReviewRecord("EVAL-IDP-260801",a,"字段准确率",5000,18,ReviewRecord.Result.PENDING,"韩牧"),new ReviewRecord("EVAL-IDP-260728",b,"条款召回率",800,4,ReviewRecord.Result.PASSED,"宋妍"),new ReviewRecord("EVAL-IDP-260726",c,"格式稳定性",600,26,ReviewRecord.Result.FAILED,"韩牧")));
+  String demo=encoder.encode("Demo@2026"); users.saveAll(List.of(new UserAccount("operator",demo,"宋妍",UserAccount.Role.DOMAIN_USER,"IDP-AP"),new UserAccount("planner",demo,"韩牧",UserAccount.Role.DOMAIN_OPERATOR,null),new UserAccount("quality",demo,"顾清",UserAccount.Role.QUALITY,null),new UserAccount("admin",encoder.encode("ZhuaTech@2026"),"系统管理员",UserAccount.Role.ADMIN,null)));};}
+}
