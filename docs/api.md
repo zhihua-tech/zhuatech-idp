@@ -10,3 +10,4 @@
 | GET | `/api/shopfloor/dashboard` | 人工复核工作台 |
 | POST | `/api/shopfloor/work-orders/{id}/reports` | 提交文档复核结果 |
 | POST | `/api/shopfloor/ai-preview` | 调用可替换 AI Provider 生成字段抽取结果 |
+| POST | `/api/shopfloor/document-quality` | 执行 OCR、字段、签章与表格抽取质量门禁 |

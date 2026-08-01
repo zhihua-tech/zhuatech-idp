@@ -25,6 +25,10 @@
 
 支持的社区版能力包括文档批次、模型目录、字段抽取配置、规则校验、人工复核、异常退回、评测报告和运营分析。模型接入采用抽象 Provider，公开仓库不会保存云 OCR 或大模型密钥。
 
+## 文档质量门禁
+
+OCR 结果进入业务系统前会经过字段完整性、签章存在性、表格识别置信度和整体 OCR 置信度检查。接口返回 `PASS`、`MANUAL_REVIEW` 或 `REJECT`，并列出缺失字段和后续动作，使自动抽取与人工复核边界清晰可追踪。
+
 ## 技术基线
 
 Java 21、Spring Boot、Spring Security、JWT、JPA、Flyway、Vue 3、Pinia、Vite、MySQL 8、H2 Test、Docker Compose 与 Nginx。包名为 `cn.zhuatech.idp`，默认数据库为 `zhuatech_idp`。
