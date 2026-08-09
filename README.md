@@ -50,3 +50,7 @@ cd frontend && npm install && npm run dev:demo
 | ![微信咨询二维码一](docs/images/zhuatech-wechat-consulting.png) | ![微信咨询二维码二](docs/images/zhuatech-wechat-consulting-2.png) |
 
 SEO：IDP 系统源码、智能文档处理、OCR 平台、发票识别、合同抽取、文档 AI、Java IDP、知华科技。
+
+## 人工复核智能路由
+
+新增 `POST /api/idp/insights/human-review-routing`，综合抽取置信度、关键字段缺失、单据金额、手写内容、重复单据和来源可信度，将文档路由到直通、标准复核、资深复核或异常队列，输出 `AUTO_POST / STANDARD_REVIEW / HIGH_PRIORITY_REVIEW / REJECT_DUPLICATE`。
