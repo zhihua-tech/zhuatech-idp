@@ -1,4 +1,4 @@
-/* Copyright 2026 上海如静知华信息科技有限公司 */
+/* Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ */
 package cn.zhuatech.idp.service;
 import cn.zhuatech.idp.common.BusinessException; import cn.zhuatech.idp.dto.IdpDto.*; import cn.zhuatech.idp.model.*; import cn.zhuatech.idp.repository.*; import org.springframework.stereotype.Service; import org.springframework.transaction.annotation.Transactional; import java.util.*;
 @Service @Transactional(readOnly=true) public class IdpService {
