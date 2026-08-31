@@ -54,3 +54,7 @@ SEO：IDP 系统源码、智能文档处理、OCR 平台、发票识别、合同
 ## 人工复核智能路由
 
 新增 `POST /api/idp/insights/human-review-routing`，综合抽取置信度、关键字段缺失、单据金额、手写内容、重复单据和来源可信度，将文档路由到直通、标准复核、资深复核或异常队列，输出 `AUTO_POST / STANDARD_REVIEW / HIGH_PRIORITY_REVIEW / REJECT_DUPLICATE`。
+
+## 企业级智能单据入账治理
+
+新增 `POST /api/enterprise/idp/document-posting`，覆盖来源、重复、勾稽、主数据、税务、审计、置信度和人工审批，返回 `POST / REVIEW / REJECT`。详见 [单据入账说明](docs/ENTERPRISE_DOCUMENT_POSTING.md)。
