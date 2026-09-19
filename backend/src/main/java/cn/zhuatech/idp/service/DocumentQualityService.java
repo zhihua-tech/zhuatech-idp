@@ -12,9 +12,16 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/** 对 OCR、必填字段、签章和表格抽取质量进行统一门禁。 */
+/**
+ * 对 OCR、必填字段、签章和表格抽取质量进行统一门禁。
+ *
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class DocumentQualityService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public QualityResult evaluate(QualityRequest request) {
         if (request.extractedRequiredFields() > request.requiredFields()) {
             throw new BusinessException("已抽取必填字段数不能超过必填字段总数");
@@ -30,6 +37,9 @@ public class DocumentQualityService {
         return new QualityResult(decision, qualityScore, missingFields, List.copyOf(issues), "PASS".equals(decision) ? "写入业务系统" : "REJECT".equals(decision) ? "退回补充签章" : "进入人工复核队列");
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record QualityRequest(
         @NotBlank(message = "请输入文档类型") String documentType,
         @DecimalMin("0.0") @DecimalMax("1.0") double ocrConfidence,
@@ -40,5 +50,8 @@ public class DocumentQualityService {
         @DecimalMin("0.0") @DecimalMax("1.0") double tableConfidence
     ) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record QualityResult(String decision, int qualityScore, int missingFields, List<String> issues, String nextAction) {}
 }

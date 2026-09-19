@@ -1,7 +1,13 @@
 /* Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ */
 package cn.zhuatech.idp.config;
 import cn.zhuatech.idp.model.*; import cn.zhuatech.idp.repository.*; import org.springframework.boot.CommandLineRunner; import org.springframework.context.annotation.*; import org.springframework.security.crypto.password.PasswordEncoder; import java.time.LocalDate; import java.util.List;
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Configuration public class DataInitializer {
+ /**
+  * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+  */
  @Bean CommandLineRunner seed(OperatingUnitRepository units,WorkRecordRepository records,ResourceRegisterRepository resources,ReviewRecordRepository reviews,UserRepository users,PasswordEncoder encoder){return args->{if(units.count()>0)return;
   OperatingUnit ap=units.save(new OperatingUnit("IDP-AP","应付发票队列","财务共享中心",9800)),contract=units.save(new OperatingUnit("IDP-CON","合同审核队列","法务中心",3000)),po=units.save(new OperatingUnit("IDP-PO","采购单据队列","采购中心",4000));
   WorkRecord a=records.save(new WorkRecord("BATCH-AP-260801-18","DOC-INVOICE-VAT","供应商增值税发票批次",ap,2860,2486,42,LocalDate.now(),WorkRecord.Status.RUNNING,"MODEL-V4")); WorkRecord b=records.save(new WorkRecord("BATCH-CON-260801-06","DOC-CONTRACT-SALES","销售合同关键条款提取",contract,628,628,8,LocalDate.now(),WorkRecord.Status.COMPLETED,"MODEL-V3")); WorkRecord c=records.save(new WorkRecord("BATCH-PO-260801-09","DOC-PO-GR","采购订单与到货单匹配",po,916,584,67,LocalDate.now(),WorkRecord.Status.RELEASED,"MODEL-V5"));

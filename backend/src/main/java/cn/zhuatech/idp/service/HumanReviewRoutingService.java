@@ -11,8 +11,14 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class HumanReviewRoutingService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Result route(Request request) {
         int riskScore = (int) Math.round((1 - request.extractionConfidence()) * 50);
         riskScore += Math.min(30, request.missingCriticalFields() * 15);
@@ -34,6 +40,9 @@ public class HumanReviewRoutingService {
             queue(decision), actions);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private String queue(String decision) {
         return switch (decision) {
             case "HIGH_PRIORITY_REVIEW" -> "SENIOR_REVIEW";
@@ -43,6 +52,9 @@ public class HumanReviewRoutingService {
         };
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Request(@NotBlank String documentNo,
                           @DecimalMin("0") @DecimalMax("1") double extractionConfidence,
                           @Min(0) int missingCriticalFields,
@@ -50,6 +62,9 @@ public class HumanReviewRoutingService {
                           boolean handwritten, boolean duplicateDocument,
                           @Min(1) int pageCount, boolean trustedSource) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Result(String documentNo, int riskScore, String decision,
                          String reviewQueue, List<String> actions) {}
 }

@@ -8,9 +8,15 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 class HumanReviewRoutingServiceTests {
     private final HumanReviewRoutingService service = new HumanReviewRoutingService();
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void routesHighValueLowConfidenceDocumentToSeniorReview() {
         var result = service.route(new HumanReviewRoutingService.Request(
@@ -21,6 +27,9 @@ class HumanReviewRoutingServiceTests {
         assertEquals("SENIOR_REVIEW", result.reviewQueue());
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void autoPostsTrustedHighConfidenceDocument() {
         var result = service.route(new HumanReviewRoutingService.Request(
