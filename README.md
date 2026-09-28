@@ -1,5 +1,7 @@
 # ZhuaTech IDP｜知华科技智能文档识别与处理平台
 
+[简体中文](README.md) | [English](README.en.md)
+
 > 把发票、合同、回单、订单和各类扫描件转化为经过校验、可以直接进入业务系统的数据。
 
 由知华科技（上海如静知华信息科技有限公司）发布 · [官方网站](https://www.zhuatech.cn/) · [部署文档](deploy/README.md)
