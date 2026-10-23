@@ -1,0 +1,70 @@
+[
+  {
+    "patch": {},
+    "expected": {
+      "decision": "HOLD",
+      "reviewFields": "#80",
+      "reviewMinutes": "#40"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "invalid": "0",
+      "missing": "0"
+    },
+    "expected": {
+      "decision": "REVIEW"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "lowConfidence": "0",
+      "invalid": "0",
+      "missing": "0"
+    },
+    "expected": {
+      "decision": "PASS"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "lowConfidence": "980"
+    },
+    "expected": {},
+    "error": true
+  },
+  {
+    "patch": {
+      "reviewCapacity": "39"
+    },
+    "expected": {
+      "capacityGap": "#1"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "fields": "0",
+      "lowConfidence": "0",
+      "invalid": "0",
+      "missing": "0"
+    },
+    "expected": {
+      "decision": "PASS"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "minutesPerField": "0"
+    },
+    "expected": {
+      "reviewMinutes": "#0",
+      "decision": "HOLD"
+    },
+    "error": false
+  }
+]

@@ -1,0 +1,97 @@
+{
+  "slug": "idp",
+  "title": "抽取结果复核队列与人工容量",
+  "fields": [
+    {
+      "key": "id",
+      "label": "记录编号",
+      "type": "ID"
+    },
+    {
+      "key": "fields",
+      "label": "应抽取字段总数",
+      "type": "NUMBER",
+      "scale": 0,
+      "min": "0",
+      "max": "1000000"
+    },
+    {
+      "key": "lowConfidence",
+      "label": "低置信度但格式有效",
+      "type": "NUMBER",
+      "scale": 0,
+      "min": "0",
+      "max": "1000000"
+    },
+    {
+      "key": "invalid",
+      "label": "格式无效字段",
+      "type": "NUMBER",
+      "scale": 0,
+      "min": "0",
+      "max": "1000000"
+    },
+    {
+      "key": "missing",
+      "label": "缺失字段",
+      "type": "NUMBER",
+      "scale": 0,
+      "min": "0",
+      "max": "1000000"
+    },
+    {
+      "key": "minutesPerField",
+      "label": "每字段复核分钟",
+      "type": "NUMBER",
+      "scale": 6,
+      "min": "0",
+      "max": "1000000000000"
+    },
+    {
+      "key": "reviewCapacity",
+      "label": "可用复核分钟",
+      "type": "NUMBER",
+      "scale": 6,
+      "min": "0",
+      "max": "1000000000000"
+    }
+  ],
+  "columns": [
+    {
+      "key": "reviewFields",
+      "label": "待复核字段"
+    },
+    {
+      "key": "reviewMinutes",
+      "label": "复核分钟"
+    },
+    {
+      "key": "cleanFields",
+      "label": "无问题字段"
+    },
+    {
+      "key": "capacityGap",
+      "label": "人工容量缺口"
+    }
+  ],
+  "description": "区分低置信度字段、格式无效字段和缺失字段的互斥复核队列，计算人工复核分钟和发布阻断数量。不做OCR或伪造抽取结果。",
+  "owner": "上海如静知华信息科技有限公司",
+  "website": "https://www.zhuatech.cn/",
+  "authorization": "商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。",
+  "version": 1,
+  "notes": "输入均须为已获授权的同口径数据。金额固定人民币元；比例为百分数。核算结果只用于复核，未审批、未写库、未发起外部调用，也未触发付款、签名、资料销毁或设备控制。建议不构成法律、安全、会计或碳核证结论。",
+  "sample": {
+    "asOf": "2026-10-24",
+    "records": [
+      {
+        "id": "ITEM-001",
+        "fields": "1000",
+        "lowConfidence": "50",
+        "invalid": "20",
+        "missing": "10",
+        "minutesPerField": "0.5",
+        "reviewCapacity": "60"
+      }
+    ]
+  }
+}
